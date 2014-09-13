@@ -15,7 +15,13 @@ module.exports = function(grunt) {
         expand: true,
         cwd: "<%= config.app %>",
         dest: "<%= config.test %>",
-        src: ["img/**", "fonts/**", "model/**", "index.html"]
+        src: ["img/**", "fonts/**", "model/**", "index.html", "style.css"]
+      },
+      normalize: {
+        files: {
+          "<%= config.app %>/scss/normalize.scss":
+            "<%= config.app %>/lib/normalize-css/normalize.css"
+        }
       }
     },
     csslint: {
@@ -28,15 +34,39 @@ module.exports = function(grunt) {
     },
     jshint: {
     },
-    mincss: {
-    },
     sass: {
+      watch: {
+        files: {
+          "<%= config.app %>/style.css": "<%= config.app %>/scss/style.scss"
+        }
+      }
     },
     uglify: {
     },
-    watch: {
-    },
     bower: {
+      install: {
+        options: {
+          targetDir: "<%= config.app %>/lib"
+        }
+      }
+    },
+    watch: {
+      sass: {
+        files: ['<%= config.app %>/scss/**'],
+        tasks: ['sass', 'autoprefixer']
+      },
+      bower: {
+        files: ['bower.json'],
+        tasks: ["bower", "copy:normalize"]
+      }
+    },
+    autoprefixer: {
+      options: {
+        browsers: ['last 2 version', 'ie 8']
+      },
+      watch: {
+        files: { "<%= config.app %>/style.css": "<%= config.app %>/style.css" }
+      }
     }
   });
 
@@ -48,11 +78,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-htmlmin");
   grunt.loadNpmTasks("grunt-contrib-imagemin");
   grunt.loadNpmTasks("grunt-contrib-jshint");
-  grunt.loadNpmTasks("grunt-contrib-mincss");
   grunt.loadNpmTasks("grunt-contrib-sass");
   grunt.loadNpmTasks("grunt-contrib-uglify");
   grunt.loadNpmTasks("grunt-contrib-watch");
   grunt.loadNpmTasks("grunt-bower-task");
+  grunt.loadNpmTasks("grunt-autoprefixer");
 
   // Tasks
   grunt.registerTask('default', ['copy:test']);

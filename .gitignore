@@ -6,3 +6,4 @@ app/style.css
 app/style.css.map
 app/lib
 app/scss/normalize.scss
+.sass-cache
