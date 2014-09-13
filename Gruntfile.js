@@ -9,6 +9,13 @@ module.exports = function(grunt) {
       test: 'test'
     },
     concat: {
+      test: {
+        files: {
+          "<%= config.test %>/script.js": ["<%= config.app %>/lib/**/jquery.js",
+            "<%= config.app %>/lib/**/underscore.js","<%= config.app %>/lib/**/backbone.js",
+            "<%= config.app %>/lib/**/tinymce.min.js","<%= config.app %>/js/**/*.js"]
+        }
+      }
     },
     copy: {
       test: {
@@ -22,17 +29,54 @@ module.exports = function(grunt) {
           "<%= config.app %>/scss/normalize.scss":
             "<%= config.app %>/lib/normalize-css/normalize.css"
         }
+      },
+      dist: {
+        expand: true,
+        cwd: "<%= config.test %>",
+        dest: "<%= config.dist %>",
+        src: ["fonts/**", "model/**"]
       }
     },
     csslint: {
+      watch: {
+        options: {
+          import: 2
+        },
+        src: ['<%= config.app %>/style.css']
+      }
     },
     cssmin: {
+      dist: {
+        files: {
+          '<%= config.dist %>/style.css': '<%= config.test %>/style.css'
+        }
+      }
     },
     htmlmin: {
+      dist: {
+        options: {
+          removeComments: true,
+          collapseWhitespace: true
+        },
+        files: {
+          '<%= config.dist %>/index.html': '<%= config.test %>/index.html'
+        }
+      }
     },
     imagemin: {
+      dist: {
+        files: [{
+          expand: true,
+          cwd: "<%= config.test %>/img",
+          dest: "<%= config.dist %>/img",
+          src: ['**/*.{png,jpg,gif}']
+        }]
+      }
     },
     jshint: {
+      watch: {
+        src: ['<%= config.app %>/js/**/*.js']
+      }
     },
     sass: {
       watch: {
@@ -42,6 +86,11 @@ module.exports = function(grunt) {
       }
     },
     uglify: {
+      dist: {
+        files: {
+          '<%= config.dist %>/script.js': '<%= config.test %>/script.js'
+        }
+      }
     },
     bower: {
       install: {
@@ -53,11 +102,15 @@ module.exports = function(grunt) {
     watch: {
       sass: {
         files: ['<%= config.app %>/scss/**'],
-        tasks: ['sass', 'autoprefixer']
+        tasks: ["sass", "autoprefixer", "csslint"]
       },
       bower: {
         files: ['bower.json'],
         tasks: ["bower", "copy:normalize"]
+      },
+      jshint: {
+        files: ['<%= config.app %>/js/**/*.js'],
+        tasks: ["jshint"]
       }
     },
     autoprefixer: {
@@ -85,6 +138,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-autoprefixer");
 
   // Tasks
-  grunt.registerTask('default', ['copy:test']);
-
+  grunt.registerTask('default', ["copy:test", "concat:test"]);
+  grunt.registerTask('dist', ["default", "copy:dist", "imagemin:dist",
+    "htmlmin:dist", "uglify:dist", "cssmin:dist"]);
 };
