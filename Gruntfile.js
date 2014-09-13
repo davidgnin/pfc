@@ -3,9 +3,20 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    config: {
+      app: 'app',
+      dist: 'dist',
+      test: 'test'
+    },
     concat: {
     },
     copy: {
+      test: {
+        expand: true,
+        cwd: "<%= config.app %>",
+        dest: "<%= config.test %>",
+        src: ["img/**", "fonts/**", "model/**", "index.html"]
+      }
     },
     csslint: {
     },
@@ -44,6 +55,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-bower-task");
 
   // Tasks
-  grunt.registerTask('default', ['uglify']);
+  grunt.registerTask('default', ['copy:test']);
 
 };
