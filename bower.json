@@ -1,0 +1,21 @@
+{
+  "name": "pfc",
+  "version": "0.1.0",
+  "homepage": "https://github.com/davidgnin/pfc",
+  "authors": [
+    "David Gómez Nin <me@davidgnin.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone": "~1.1.2",
+    "jquery": "~2.1.1",
+    "tinymce": "~4.1.5"
+  }
+}
