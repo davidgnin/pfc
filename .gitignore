@@ -2,3 +2,7 @@ node_modules
 dist
 test
 bower_components
+app/style.css
+app/style.css.map
+app/lib
+app/scss/normalize.scss
