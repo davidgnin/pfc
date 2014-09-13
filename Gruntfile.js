@@ -24,6 +24,8 @@ module.exports = function(grunt) {
     uglify: {
     },
     watch: {
+    },
+    bower: {
     }
   });
 
@@ -39,6 +41,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-sass");
   grunt.loadNpmTasks("grunt-contrib-uglify");
   grunt.loadNpmTasks("grunt-contrib-watch");
+  grunt.loadNpmTasks("grunt-bower-task");
 
   // Tasks
   grunt.registerTask('default', ['uglify']);
