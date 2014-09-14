@@ -2,7 +2,7 @@
 @font-face {
   font-family: 'icon-font';
   src: url('fonts/icon-font/icon-font.eot');
-  src: url('fonts/icon-font/icon-font.eot#iefix') format('embedded-opentype'),
+  src: url('fonts/icon-font/icon-font.eot?#iefix') format('embedded-opentype'),
        url('fonts/icon-font/icon-font.woff') format('woff'),
        url('fonts/icon-font/icon-font.ttf') format('truetype'),
        url('fonts/icon-font/icon-font.svg#icon-font') format('svg');
@@ -12,7 +12,7 @@
 @font-face {
   font-family: 'Open Sans';
   src: url('fonts/open-sans/OpenSans-Regular.eot');
-  src: url('fonts/open-sans/OpenSans-Regular.eot#iefix') format('embedded-opentype'),
+  src: url('fonts/open-sans/OpenSans-Regular.eot?#iefix') format('embedded-opentype'),
        url('fonts/open-sans/OpenSans-Regular.woff') format('woff'),
        url('fonts/open-sans/OpenSans-Regular.ttf') format('truetype'),
        url('fonts/open-sans/OpenSans-Regular.svg#open-sans') format('svg');
@@ -22,7 +22,7 @@
 @font-face {
   font-family: 'Open Sans';
   src: url('fonts/open-sans/OpenSans-Italic.eot');
-  src: url('fonts/open-sans/OpenSans-Italic.eot#iefix') format('embedded-opentype'),
+  src: url('fonts/open-sans/OpenSans-Italic.eot?#iefix') format('embedded-opentype'),
        url('fonts/open-sans/OpenSans-Italic.woff') format('woff'),
        url('fonts/open-sans/OpenSans-Italic.ttf') format('truetype'),
        url('fonts/open-sans/OpenSans-Italic.svg#open-sans') format('svg');
@@ -32,7 +32,7 @@
 @font-face {
   font-family: 'Open Sans';
   src: url('fonts/open-sans/OpenSans-Bold.eot');
-  src: url('fonts/open-sans/OpenSans-Bold.eot#iefix') format('embedded-opentype'),
+  src: url('fonts/open-sans/OpenSans-Bold.eot?#iefix') format('embedded-opentype'),
        url('fonts/open-sans/OpenSans-Bold.woff') format('woff'),
        url('fonts/open-sans/OpenSans-Bold.ttf') format('truetype'),
        url('fonts/open-sans/OpenSans-Bold.svg#open-sans') format('svg');
@@ -42,7 +42,7 @@
 @font-face {
   font-family: 'Open Sans';
   src: url('fonts/open-sans/OpenSans-Light.eot');
-  src: url('fonts/open-sans/OpenSans-Light.eot#iefix') format('embedded-opentype'),
+  src: url('fonts/open-sans/OpenSans-Light.eot?#iefix') format('embedded-opentype'),
        url('fonts/open-sans/OpenSans-Light.woff') format('woff'),
        url('fonts/open-sans/OpenSans-Light.ttf') format('truetype'),
        url('fonts/open-sans/OpenSans-Light.svg#open-sans') format('svg');
@@ -51,6 +51,7 @@
 }
 
 @import "normalize";
+@import "utils";
 @import "main";
 @import "bar";
 @import "menu";

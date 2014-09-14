@@ -37,14 +37,6 @@ module.exports = function(grunt) {
         src: ["fonts/**", "model/**"]
       }
     },
-    csslint: {
-      watch: {
-        options: {
-          import: 2
-        },
-        src: ['<%= config.app %>/style.css']
-      }
-    },
     cssmin: {
       dist: {
         files: {
@@ -102,7 +94,7 @@ module.exports = function(grunt) {
     watch: {
       sass: {
         files: ['<%= config.app %>/scss/**'],
-        tasks: ["sass", "autoprefixer", "csslint"]
+        tasks: ["sass", "autoprefixer"]
       },
       bower: {
         files: ['bower.json'],
@@ -126,7 +118,6 @@ module.exports = function(grunt) {
   // Load plugins
   grunt.loadNpmTasks("grunt-contrib-concat");
   grunt.loadNpmTasks("grunt-contrib-copy");
-  grunt.loadNpmTasks("grunt-contrib-csslint");
   grunt.loadNpmTasks("grunt-contrib-cssmin");
   grunt.loadNpmTasks("grunt-contrib-htmlmin");
   grunt.loadNpmTasks("grunt-contrib-imagemin");

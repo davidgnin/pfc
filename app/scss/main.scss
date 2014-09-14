@@ -1,3 +1,14 @@
 body {
-  font-family: sans-serif;
+  font-family: "Open Sans", sans-serif;
+}
+#wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  max-width: 800px;
+  max-height: 640px;
+  background-color: #ddd;
 }
