@@ -1,3 +1,4 @@
 $(document).ready(function () {
-  console.log("ready ok");
+  var app = new PfcApp();
+  app.start();
 });

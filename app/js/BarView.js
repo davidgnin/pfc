@@ -1,0 +1,3 @@
+BarView = Backbone.View.extend({
+  
+});
