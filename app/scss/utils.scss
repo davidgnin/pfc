@@ -1,1 +1,28 @@
 $transSpeed: 0.15s;
+$assets: url("img/assets.png");
+$contrast: #CF000F;
+$darkGreen: #1E824C;
+
+.pfc-close-button {
+  position: absolute;
+  top: 1em;
+  right: 1.5em;
+  color: $darkGreen;
+  cursor: pointer;
+  transition: color $transSpeed;
+}
+.pfc-close-button:hover {
+  color: $contrast;
+}
+.pfc-close-button:before {
+  font-size: 2em;
+  content: "\e806";
+  font-family: "icon-font";
+  display: inline-block;
+  vertical-align: top;
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  font-variant: normal;
+  text-transform: none;
+}

@@ -1,3 +1,37 @@
 #menu {
-  
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 40px;
+  left: 0;
+  background-color: #90C695;
+  background-color: rgba(144, 198, 149, 0.5);
+  display: none;
+
+  .column {
+    width: 50%;
+    float: left;
+    text-align: center;
+  }
+  h2 {
+    color: $darkGreen;
+    font-weight: 300;
+    text-transform: lowercase;
+    font-size: 2em;
+    margin-top: 3em;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  li {
+    font-size: 1.5em;
+    padding: 0.25em 0;
+    font-weight: 300;
+    cursor: pointer;
+    transition: color $transSpeed;
+  }
+  li:hover {
+    color: $contrast;
+  }
 }

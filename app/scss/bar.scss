@@ -14,12 +14,12 @@
     color: #C8F7C5;
   }
   .button.clickable {
-    background-color: #1E824C;
+    background-color: $darkGreen;
     cursor: pointer;
     transition: color $transSpeed, background-color $transSpeed;
   }
   .button.clickable:hover {
-    background-color: #CF000F;
+    background-color: $contrast;
     color: #fff;
   }
   .button.informative {
@@ -38,18 +38,65 @@
     text-transform: none;
   }
   .menu-button:before {
-    content: '\e807';
+    content: '\e803';
   }
   .marker-button:before {
     content: '\e802';
   }
+  .buttons .button.plus-button {
+    float: right;
+  }
+  .buttons .button:after {
+    background-image: $assets;
+    display: inline-block;
+    vertical-align: top;
+    width: 40px;
+    height: 40px;
+  }
+  .source-button:after {
+    content: "";
+  }
+  .source-button.human:after {
+    background-position: 0 0;
+  }
+  .source-button.mouse:after {
+    background-position: -40px 0;
+  }
+  .source-button.pig:after {
+    background-position: -80px 0;
+  }
+  .source-button.leaf:after {
+    background-position: -120px 0;
+  }
+  .type-button:after {
+    content: "";
+  }
+  .type-button.glass:after {
+    background-position: 0 -40px;
+  }
+  .type-button.micro:after {
+    background-position: -40px -40px;
+  }
+  .type-button.electro:after {
+    background-position: -80px -40px;
+  }
+  .type-button.camera:after {
+    background-position: -120px -40px;
+  }
+}
+#wrapper.zoom-mode {
   .minus-button:before {
     content: '\e801';
   }
   .plus-button:before {
     content: '\e800';
   }
-  .buttons .button.plus-button {
-    float: right;
+}
+#wrapper.rot-mode {
+  .minus-button:before {
+    content: '\e808';
+  }
+  .plus-button:before {
+    content: '\e809';
   }
 }

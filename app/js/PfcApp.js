@@ -1,23 +1,25 @@
-var PfcApp = Backbone.Router.extend({
+var PfcApp = new (Backbone.Router.extend({
   start: function startPfcApp() {
     this.menu = new MenuView();
+    this.menu.start();
     this.bar = new BarView();
     Backbone.history.start();
   },
   routes: {
-    "zoom/:line/:point": "loadZoom",
-    "rot/:line/:point": "loadRot",
+    "zoom/:line(/:point)": "loadZoom",
+    "rot/:line(/:point)": "loadRot",
     "*default": "loadBasic"
   },
   loadZoom: function loadZoom(line, point) {
-    this.loadBasic();
     console.log("load zoom");
   },
   loadRot: function loadRot(line, point) {
-    this.loadBasic();
     console.log("load rot");
   },
   loadBasic: function loadBasic() {
-    console.log("load basic");
+    this.showMenu();
+  },
+  showMenu: function loadMenu() {
+    this.menu.showMenu();
   }
-});
+}))();
