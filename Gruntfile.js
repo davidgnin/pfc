@@ -13,7 +13,7 @@ module.exports = function(grunt) {
         files: {
           "<%= config.test %>/script.js": ["<%= config.app %>/lib/**/jquery.js",
             "<%= config.app %>/lib/**/underscore.js","<%= config.app %>/lib/**/backbone.js",
-            "<%= config.app %>/lib/**/tinymce.min.js",
+            "<%= config.app %>/lib/**/tinymce.min.js","<%= config.app %>/lib/ImgPreloader.js",
             "<%= config.app %>/model/**/*.js","<%= config.app %>/js/**/*.js"]
         }
       }

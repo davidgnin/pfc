@@ -1,0 +1,45 @@
+#loading-layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 40px;
+  left: 0;
+  color: $darkGreen;
+  background-color: #90C695;
+  background-color: rgba(144, 198, 149, 0.5);
+  display: none;
+
+  .content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 100px;
+    text-align: center;
+  }
+  .spinner {
+    display: inline-block;
+    animation: rotating 2s linear infinite;
+  }
+  .spinner:before {
+    font-size: 4em;
+    content: "\e807";
+    font-family: "icon-font";
+    display: inline-block;
+    vertical-align: top;
+    font-style: normal;
+    font-weight: normal;
+    speak: none;
+    font-variant: normal;
+    text-transform: none;
+  }
+  .loaded {
+    font-size: 2em;
+    font-weight: bold;
+  }
+}
+@keyframes rotating {
+  100% { transform:rotate(360deg); }
+}
