@@ -6,6 +6,29 @@
   height: 40px;
   background-color: #90C695;
 
+  .bar-zone {
+    position: absolute;
+    top: 0;
+    right: 40px;
+    bottom: 0;
+    left: 200px;
+    line-height: 40px;
+    text-align: center;
+    font-weight: 700;
+    z-index: 0;
+    color: #C8F7C5;
+  }
+  .bar-fill {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    background-color: #3FC380;
+    z-index: -1;
+    transition: width 1s;
+  }
   .buttons .button {
     width: 40px;
     height: 40px;
@@ -23,7 +46,7 @@
     color: #fff;
   }
   .button.informative {
-    background-color: #00B16A;
+    background-color: #3FC380;
   }
   .buttons .button:before {
     font-family: "icon-font";
