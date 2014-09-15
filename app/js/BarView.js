@@ -6,6 +6,11 @@ BarView = Backbone.View.extend({
     "click .minus-button": "goMinus",
     "click .bar-zone": "barJump"
   },
+  mouseWheel: function () {
+    $("#canvas").on("mousewheel.pfcapp", function (e) {
+      console.log(e.deltaY);
+    });
+  },
   showMenu: function showMenu() {
     PfcApp.showMenu();
   },

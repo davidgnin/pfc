@@ -8,6 +8,7 @@ var PfcApp = new (Backbone.Router.extend({
     this.menu = new MenuView();
     this.menu.start();
     this.bar = new BarView();
+    this.bar.mouseWheel();
     this.loadingLayer = new LoadingLayerView();
     Backbone.history.start();
   },

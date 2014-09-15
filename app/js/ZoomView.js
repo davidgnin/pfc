@@ -48,7 +48,6 @@ var ZoomView = Backbone.View.extend({
         bottom: "0%",
         left: "0%"
       });
-      console.log("unblock");
       PfcApp.blockEvents = false;
     }, 500);
 
