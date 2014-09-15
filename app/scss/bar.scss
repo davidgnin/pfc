@@ -17,6 +17,7 @@
     font-weight: 700;
     z-index: 0;
     color: #C8F7C5;
+    cursor: pointer;
   }
   .bar-fill {
     content: "";
@@ -27,7 +28,6 @@
     width: 0;
     background-color: #3FC380;
     z-index: -1;
-    transition: width 1s;
   }
   .buttons .button {
     width: 40px;
@@ -113,6 +113,9 @@
   }
   .plus-button:before {
     content: '\e800';
+  }
+  .bar-fill {
+    transition: width 1s;
   }
 }
 #wrapper.rot-mode {

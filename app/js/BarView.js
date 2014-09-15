@@ -3,7 +3,8 @@ BarView = Backbone.View.extend({
   events: {
     "click .menu-button": "showMenu",
     "click .plus-button": "goPlus",
-    "click .minus-button": "goMinus"
+    "click .minus-button": "goMinus",
+    "click .bar-zone": "barJump"
   },
   showMenu: function showMenu() {
     PfcApp.showMenu();
@@ -15,9 +16,11 @@ BarView = Backbone.View.extend({
     var newPoint = point + 1;
     if (newPoint == photos && !zoomMode) {
       newPoint = 0;
-      PfcApp.navigate(PfcApp.section + "/" + PfcApp.line + "/" + newPoint, { trigger: true });
+      PfcApp.navigate(PfcApp.section + "/" + PfcApp.line + "/" + newPoint,
+        { trigger: true });
     } else if (newPoint < photos) {
-      PfcApp.navigate(PfcApp.section + "/" + PfcApp.line + "/" + newPoint, { trigger: true });
+      PfcApp.navigate(PfcApp.section + "/" + PfcApp.line + "/" + newPoint,
+        { trigger: true });
     }
   },
   goMinus: function goMinus() {
@@ -27,9 +30,11 @@ BarView = Backbone.View.extend({
     var newPoint = point - 1;
     if (newPoint < 0 && !zoomMode) {
       newPoint = photos - 1;
-      PfcApp.navigate(PfcApp.section + "/" + PfcApp.line + "/" + newPoint, { trigger: true });
+      PfcApp.navigate(PfcApp.section + "/" + PfcApp.line + "/" + newPoint,
+        { trigger: true });
     } else if (newPoint >= 0) {
-      PfcApp.navigate(PfcApp.section + "/" + PfcApp.line + "/" + newPoint, { trigger: true });
+      PfcApp.navigate(PfcApp.section + "/" + PfcApp.line + "/" + newPoint,
+        { trigger: true });
     }
   },
   updateBar: function updateBar(percent) {
@@ -45,5 +50,12 @@ BarView = Backbone.View.extend({
       info.source);
     this.$(".type-button").attr("class", "button informative type-button " +
       info.type);
+  },
+  barJump: function barJump(e) {
+    var width = this.$(".bar-zone").width();
+    var offset = e.offsetX;
+    var newPoint = Math.floor((offset*PfcApp.photos)/width);
+    PfcApp.navigate(PfcApp.section + "/" + PfcApp.line + "/" + newPoint,
+      { trigger: true });
   }
 });
