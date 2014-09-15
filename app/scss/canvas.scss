@@ -16,16 +16,18 @@
     background-position: center;
     visibility: hidden;
   }
-  .aux-layer.mobile {
-    transition: top 0.5s, right 0.5s, bottom 0.5s, left 0.5s, width 0.5s,
-      height 0.5s;
-  }
 }
 #wrapper.zoom-mode .aux-layer {
   right: 0%;
   bottom: 0%;
 }
+#wrapper.zoom-mode .aux-layer.mobile {
+  transition: top 0.5s, right 0.5s, bottom 0.5s, left 0.5s;
+}
 #wrapper.rot-mode .aux-layer {
   width: 100%;
   height: 100%;
+}
+#wrapper.rot-mode .aux-layer.mobile {
+  transition: top 0.5s, left 0.5s, width 0.5s, height 0.5s;
 }

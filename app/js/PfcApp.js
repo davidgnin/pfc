@@ -3,6 +3,7 @@ var PfcApp = new (Backbone.Router.extend({
   line: null,
   point: 0,
   photos: 0,
+  blockEvents: false,
   start: function startPfcApp() {
     this.menu = new MenuView();
     this.menu.start();
@@ -49,6 +50,9 @@ var PfcApp = new (Backbone.Router.extend({
         that.loadingLayer.update(myPreloader.percentage());
         if (myPreloader.preloaded()) {
           clearInterval(interval);
+          if (that.lineView) {
+            that.lineView.unbind();
+          }
           that.lineView = new ZoomView();
           var barData = that.lineView.start(line, lineData, point);
           $("#wrapper").removeClass("rot-mode").addClass("zoom-mode");
@@ -58,10 +62,13 @@ var PfcApp = new (Backbone.Router.extend({
         }
       }, 50);
     } else if ((point || point === 0) && (point != this.point)) {
-      this.point = point;
-      var barData = this.lineView.changePoint(point);
-      this.bar.updateBar((point/(this.photos - 1))*100);
-      this.bar.updateInfo(barData);
+      if (!this.blockEvents) {
+        this.blockEvents = true;
+        this.point = point;
+        var barData = this.lineView.changePoint(point);
+        this.bar.updateBar((point/(this.photos - 1))*100);
+        this.bar.updateInfo(barData);
+      }
     }
   },
   loadRot: function loadRot(line, point) {
@@ -88,6 +95,9 @@ var PfcApp = new (Backbone.Router.extend({
         that.loadingLayer.update(myPreloader.percentage());
         if (myPreloader.preloaded()) {
           clearInterval(interval);
+          if (that.lineView) {
+            that.lineView.unbind();
+          }
           that.lineView = new RotView();
           that.lineView.start(line, lineData, point);
           $("#wrapper").removeClass("zoom-mode").addClass("rot-mode");
@@ -100,9 +110,12 @@ var PfcApp = new (Backbone.Router.extend({
         }
       }, 50);
     } else if ((point || point === 0) && (point != this.point)) {
-      this.point = point;
-      this.lineView.changePoint(point);
-      this.bar.updateBar((point/(this.photos - 1))*100);
+      if (!this.blockEvents) {
+        this.blockEvents = true;
+        this.point = point;
+        this.lineView.changePoint(point);
+        this.bar.updateBar((point/(this.photos - 1))*100);
+      }
     }
   },
   loadBasic: function loadBasic() {

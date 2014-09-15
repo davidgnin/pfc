@@ -11,10 +11,18 @@ var ZoomView = Backbone.View.extend({
     this.name = name;
     this.data = data;
     this.point = point;
+    this.$el.off("click.rotevent");
+    this.$(".aux-layer").off("mousedown.rotevent");
     this.$el.css("background-image", 'url("img/zoom/' + name + '/' + point +
       '.jpg")');
-    this.$(".aux-layer").css("background-image", 'url("img/zoom/' + name + '/' +
-      point + '.jpg")');
+    this.$(".aux-layer").css({
+      backgroundImage: 'url("img/zoom/' + name + '/' + point + '.jpg")',
+      width: "auto",
+      height: "auto",
+      visibility: "hidden",
+      top: "0%",
+      left: "0%"
+    });
     _.each(["glass", "micro", "electro"], function (type) {
       if (data[type]) {
         _.each(data[type].scales, function (scale) {
@@ -40,6 +48,8 @@ var ZoomView = Backbone.View.extend({
         bottom: "0%",
         left: "0%"
       });
+      console.log("unblock");
+      PfcApp.blockEvents = false;
     }, 500);
 
     var rel = this.parsedData[point].scale/this.parsedData[this.point].scale;
