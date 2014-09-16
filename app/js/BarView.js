@@ -49,7 +49,9 @@ BarView = Backbone.View.extend({
   },
   showMenu: function showMenu(e) {
     e.preventDefault();
-    PfcApp.showMenu();
+    if (!PfcApp.blockEvents) {
+      PfcApp.showMenu();
+    }
   },
   goPlus: function goPlus(e) {
     e.preventDefault();

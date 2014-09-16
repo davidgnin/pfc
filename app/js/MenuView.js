@@ -17,8 +17,10 @@ var MenuView = Backbone.View.extend({
   },
   hideMenu: function hideMenu(that) {
     that.$el.fadeOut("fast");
+    PfcApp.blockEvents = false;
   },
   showMenu: function showMenu() {
+    PfcApp.blockEvents = true;
     this.$el.fadeIn("fast");
   },
   loadLine: function loadLine(e, that) {
