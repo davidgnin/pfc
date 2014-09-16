@@ -68,12 +68,14 @@ var RotView = Backbone.View.extend({
         url: "img/rot/" + that.name + "/partials/" + that.point + ".jpg"
       }]);
       myPreloader.start();
-      var offsetX = e.offsetX*3;
-      var offsetY = e.offsetY*3;
+      var offsetX = (e.pageX - $("#canvas").offset().left)*3;
+      var offsetY = (e.pageY - $("#canvas").offset().top)*3;
       var left = that.$el.width()/2 - offsetX;
       var top = that.$el.height()/2 - offsetY;
       if (left > 0) left = 0;
       if (top > 0) top = 0;
+      if (left < -that.$el.width()*2) left = -that.$el.width()*2;
+      if (top < -that.$el.height()*2) top = -that.$el.height()*2;
       that.$(".aux-layer").addClass("mobile");
       that.$(".aux-layer").css({
         visibility: "visible",

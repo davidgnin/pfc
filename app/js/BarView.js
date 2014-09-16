@@ -95,7 +95,7 @@ BarView = Backbone.View.extend({
   barJump: function barJump(e) {
     if (!PfcApp.blockEvents) {
       var width = this.$(".bar-zone").width();
-      var offset = e.offsetX;
+      var offset = e.pageX - this.$(".bar-zone").offset().left;
       var newPoint = Math.floor((offset*PfcApp.photos)/width);
       PfcApp.navigate(PfcApp.section + "/" + PfcApp.line + "/" + newPoint,
         { trigger: true });
