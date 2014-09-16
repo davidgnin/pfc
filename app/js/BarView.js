@@ -1,13 +1,17 @@
 BarView = Backbone.View.extend({
   el: "#bar",
-  events: {
-    "click .menu-button": "showMenu",
-    "click .plus-button": "goPlus",
-    "click .minus-button": "goMinus",
-    "click .bar-zone": "barJump"
-  },
   mwLoading: false,
   mwDelta: 0,
+  start: function start() {
+    var that = this;
+    this.$(".menu-button").on(PfcApp.event, this.showMenu);
+    this.$(".plus-button").on(PfcApp.event, this.goPlus);
+    this.$(".minus-button").on(PfcApp.event, this.goMinus);
+    this.$(".bar-zone").on(PfcApp.event, function (e) {
+      that.barJump(e, that);
+    });
+    this.mouseWheel();
+  },
   mouseWheel: function () {
     var that = this;
     $("#canvas").on("mousewheel.pfcapp", function (e) {
@@ -43,10 +47,12 @@ BarView = Backbone.View.extend({
       }
     });
   },
-  showMenu: function showMenu() {
+  showMenu: function showMenu(e) {
+    e.preventDefault();
     PfcApp.showMenu();
   },
-  goPlus: function goPlus() {
+  goPlus: function goPlus(e) {
+    e.preventDefault();
     if (!PfcApp.blockEvents) {
       var point = parseInt(PfcApp.point, 10);
       var photos = parseInt(PfcApp.photos, 10);
@@ -62,7 +68,8 @@ BarView = Backbone.View.extend({
       }
     }
   },
-  goMinus: function goMinus() {
+  goMinus: function goMinus(e) {
+    e.preventDefault();
     if (!PfcApp.blockEvents) {
       var point = parseInt(PfcApp.point, 10);
       var photos = parseInt(PfcApp.photos, 10);
@@ -92,10 +99,16 @@ BarView = Backbone.View.extend({
     this.$(".type-button").attr("class", "button informative type-button " +
       info.type);
   },
-  barJump: function barJump(e) {
+  barJump: function barJump(e, that) {
+    e.preventDefault();
     if (!PfcApp.blockEvents) {
-      var width = this.$(".bar-zone").width();
-      var offset = e.pageX - this.$(".bar-zone").offset().left;
+      var width = that.$(".bar-zone").width();
+      var offset;
+      if (PfcApp.event == "touchstart") {
+        offset = e.originalEvent.touches[0].pageX - that.$(".bar-zone").offset().left;
+      } else {
+        offset = e.pageX - that.$(".bar-zone").offset().left;
+      }
       var newPoint = Math.floor((offset*PfcApp.photos)/width);
       PfcApp.navigate(PfcApp.section + "/" + PfcApp.line + "/" + newPoint,
         { trigger: true });

@@ -4,11 +4,15 @@ var PfcApp = new (Backbone.Router.extend({
   point: 0,
   photos: 0,
   blockEvents: false,
+  event: "click",
   start: function startPfcApp() {
+    if ('ontouchstart' in document.documentElement) {
+      this.event = "touchstart";
+    }
     this.menu = new MenuView();
     this.menu.start();
     this.bar = new BarView();
-    this.bar.mouseWheel();
+    this.bar.start();
     this.loadingLayer = new LoadingLayerView();
     Backbone.history.start();
   },

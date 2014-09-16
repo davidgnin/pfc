@@ -12,7 +12,10 @@ var ZoomView = Backbone.View.extend({
     this.data = data;
     this.point = point;
     this.$el.off("click.rotevent");
-    this.$(".aux-layer").off("mousedown.rotevent");
+    this.$el.off("touchstart.rotevent");
+    this.$el.off("touchend.rotevent");
+    this.$(".aux-layer").off("click.rotevent");
+    this.$(".aux-layer").off("touchstart.rotevent");
     this.$el.css("background-image", 'url("img/zoom/' + name + '/' + point +
       '.jpg")');
     this.$(".aux-layer").css({

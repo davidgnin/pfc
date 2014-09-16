@@ -6,6 +6,7 @@ var RotView = Backbone.View.extend({
   zoomed: false,
   loaded: [],
   cancelClick: false,
+  touchEvent: null,
   start: function start(name, data, point) {
     if (!point) {
       point = 0;
@@ -21,10 +22,25 @@ var RotView = Backbone.View.extend({
       height: "100%"
     });
     var that = this;
-    this.$el.on("click.rotevent", function (e) {
-      that.switchStatus(e, that);
-    });
-    this.$(".aux-layer").on("mousedown.rotevent", function (e) {
+    if (PfcApp.event == "touchstart") {
+      this.$el.on("touchstart.rotevent", function (e) {
+        e.preventDefault();
+        that.touchEvent = e;
+      });
+      this.$el.on("touchend.rotevent", function (e2) {
+        e2.preventDefault();
+        that.switchStatus(that.touchEvent, that);
+      });
+    } else {
+      this.$el.on("click.rotevent", function (e) {
+        that.switchStatus(e, that);
+      });
+    }
+    var event = "mousedown";
+    if (PfcApp.event == "touchstart") {
+      event = "touchstart";
+    }
+    this.$(".aux-layer").on(event + ".rotevent", function (e) {
       that.dragBehaviour(e, that);
     });
   },
@@ -62,14 +78,23 @@ var RotView = Backbone.View.extend({
     }
   },
   switchStatus: function switchStatus(e, that) {
+    e.preventDefault();
     var $target = $(e.target);
     if ($target.attr("id") == "canvas") {
       var myPreloader = ImgPreloader([{
         url: "img/rot/" + that.name + "/partials/" + that.point + ".jpg"
       }]);
       myPreloader.start();
-      var offsetX = (e.pageX - $("#canvas").offset().left)*3;
-      var offsetY = (e.pageY - $("#canvas").offset().top)*3;
+      var offsetX, offsetY;
+      if (PfcApp.event == "touchstart") {
+        offsetX = (e.originalEvent.touches[0].pageX -
+          $("#canvas").offset().left)*3;
+        offsetY = (e.originalEvent.touches[0].pageY -
+          $("#canvas").offset().top)*3;
+      } else {
+        offsetX = (e.pageX - $("#canvas").offset().left)*3;
+        offsetY = (e.pageY - $("#canvas").offset().top)*3;
+      }
       var left = that.$el.width()/2 - offsetX;
       var top = that.$el.height()/2 - offsetY;
       if (left > 0) left = 0;
@@ -127,17 +152,37 @@ var RotView = Backbone.View.extend({
     }
   },
   dragBehaviour: function dragBehaviour(e, that) {
+    e.preventDefault();
     var top = parseFloat(that.$(".aux-layer").css("top").replace("px", ""), 10);
     var left = parseFloat(that.$(".aux-layer").css("left").replace("px", ""),
       10);
     var limitTop = -1*(that.$el.height()*2);
     var limitLeft = -1*(that.$el.width()*2);
-    var origTop = e.pageY;
-    var origLeft = e.pageX;
-    $(document).on("mousemove.dragrot", function (e2) {
+    var origTop, origLeft;
+    if (PfcApp.event == "touchstart") {
+      origTop = e.originalEvent.touches[0].pageY;
+      origLeft = e.originalEvent.touches[0].pageX;
+    } else {
+      origTop = e.pageY;
+      origLeft = e.pageX;
+    }
+    var eventMove = "mousemove";
+    var eventUp = "mouseup";
+    if (PfcApp.event == "touchstart") {
+      eventMove = "touchmove";
+      eventUp = "touchend";
+    }
+    $(document).on(eventMove + ".dragrot", function (e2) {
+      e2.preventDefault();
       that.cancelClick = true;
-      var newTop = top + (e2.pageY - origTop);
-      var newLeft = left + (e2.pageX - origLeft);
+      var newTop, newLeft;
+      if (PfcApp.event == "touchstart") {
+        newTop = top + (e2.originalEvent.touches[0].pageY - origTop);
+        newLeft = left + (e2.originalEvent.touches[0].pageX - origLeft);
+      } else {
+        newTop = top + (e2.pageY - origTop);
+        newLeft = left + (e2.pageX - origLeft);
+      }
       if (newTop > 0) newTop = 0;
       if (newTop < limitTop) newTop = limitTop;
       if (newLeft > 0) newLeft = 0;
@@ -147,9 +192,10 @@ var RotView = Backbone.View.extend({
         left: newLeft + "px"
       });
     });
-    $(document).on("mouseup.dragrot", function () {
-      $(document).off("mousemove.dragrot");
-      $(document).off("mousemove.dragrot");
+    $(document).on(eventUp + ".dragrot", function (e3) {
+      e3.preventDefault();
+      $(document).off(eventMove + ".dragrot");
+      $(document).off(eventUp + ".dragrot");
     });
   }
 });
