@@ -6,9 +6,41 @@ BarView = Backbone.View.extend({
     "click .minus-button": "goMinus",
     "click .bar-zone": "barJump"
   },
+  mwLoading: false,
+  mwDelta: 0,
   mouseWheel: function () {
+    var that = this;
     $("#canvas").on("mousewheel.pfcapp", function (e) {
-      console.log(e.deltaY);
+      if (!PfcApp.blockEvents) {
+        e.preventDefault();
+        if (e.deltaY > 0) {
+          if (that.mwDelta > -4) {
+            that.mwDelta--;
+          }
+        } else if (that.mwDelta < 4) {
+          that.mwDelta++;
+        }
+        if (!that.mwLoading) {
+          that.mwLoading = true;
+          setTimeout(function () {
+            
+            var point = parseInt(PfcApp.point, 10);
+            var photos = parseInt(PfcApp.photos, 10);
+            var zoomMode = $("#wrapper").hasClass("zoom-mode");
+            var newPoint = point + that.mwDelta;
+            if (!zoomMode) newPoint = (newPoint%photos + photos)%photos;
+            else if (newPoint < 0) newPoint = 0;
+            else if (newPoint >= photos) newPoint = photos - 1;
+            PfcApp.navigate(PfcApp.section + "/" + PfcApp.line + "/" + newPoint,
+              { trigger: true });
+
+            setTimeout(function () {
+              that.mwDelta = 0;
+              that.mwLoading = false;
+            }, 205);
+          }, 80);
+        }
+      }
     });
   },
   showMenu: function showMenu() {
