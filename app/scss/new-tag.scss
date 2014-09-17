@@ -1,0 +1,83 @@
+#new-tag {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 40px;
+  left: 0;
+  background-color: #90C695;
+  background-color: rgba(144, 198, 149, 0.75);
+  display: none;
+  text-align: center;
+  overflow: auto;
+
+  input, textarea {
+    display: inline-block;
+    width: 80%;
+    padding: 1em;
+    margin-top: 2em;
+    box-sizing: border-box;
+  }
+  input.empty, textarea.empty {
+    border: solid 1px $contrast;
+  }
+  .tag-description {
+    height: 10em;
+    resize: vertical;
+  }
+  .submit-button {
+    max-width: 10em;
+  }
+}
+#add-tag {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 40px;
+  left: 0;
+  display: none;
+  overflow: hidden;
+
+  .pfc-marker.moving-marker {
+    cursor: move;
+  }
+  .buttons {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80px;
+    height: 40px;
+    z-index: 1;
+  }
+  .button {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    color: #C8F7C5;
+    float: left;
+    background-color: $darkGreen;
+    cursor: pointer;
+    transition: color $transSpeed, background-color $transSpeed;
+  }
+  .button:hover {
+    background-color: $contrast;
+    color: #fff;
+  }
+  .button:before {
+    font-family: "icon-font";
+    line-height: 40px;
+    font-size: 24px;
+    display: inline-block;
+    vertical-align: top;
+    font-style: normal;
+    font-weight: normal;
+    speak: none;
+    font-variant: normal;
+    text-transform: none;
+  }
+  .back-button:before {
+    content: '\e808';
+  }
+  .confirm-button:before {
+    content: '\e80A';
+  }
+}

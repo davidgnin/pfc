@@ -37,7 +37,7 @@ var ZoomView = Backbone.View.extend({
         }, this);
       }
     }, this);
-    return this.parsedData[point];
+    return this.parsedData;
   },
   changePoint: function changePoint(point) {
     var that = this;

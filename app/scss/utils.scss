@@ -15,7 +15,7 @@ $darkGreen: #1E824C;
   color: $contrast;
 }
 .pfc-close-button:before {
-  font-size: 2em;
+  font-size: 24px;
   content: "\e806";
   font-family: "icon-font";
   display: inline-block;
@@ -25,4 +25,12 @@ $darkGreen: #1E824C;
   speak: none;
   font-variant: normal;
   text-transform: none;
+}
+.pfc-marker {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: $assets 0 -80px;
+  margin: -35px 0 0 -10px;
+  cursor: pointer;
 }

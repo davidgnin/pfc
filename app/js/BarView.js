@@ -5,6 +5,7 @@ BarView = Backbone.View.extend({
   start: function start() {
     var that = this;
     this.$(".menu-button").on(PfcApp.event, this.showMenu);
+    this.$(".marker-button").on(PfcApp.event, this.showNewTag);
     this.$(".plus-button").on(PfcApp.event, this.goPlus);
     this.$(".minus-button").on(PfcApp.event, this.goMinus);
     this.$(".bar-zone").on(PfcApp.event, function (e) {
@@ -51,6 +52,12 @@ BarView = Backbone.View.extend({
     e.preventDefault();
     if (!PfcApp.blockEvents) {
       PfcApp.showMenu();
+    }
+  },
+  showNewTag: function showNewTag(e) {
+    e.preventDefault();
+    if (!PfcApp.blockEvents) {
+      PfcApp.showNewTag();
     }
   },
   goPlus: function goPlus(e) {

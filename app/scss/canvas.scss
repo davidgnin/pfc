@@ -16,6 +16,12 @@
     background-position: center;
     visibility: hidden;
   }
+
+  .tag-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 }
 #wrapper.zoom-mode .aux-layer {
   right: 0%;
