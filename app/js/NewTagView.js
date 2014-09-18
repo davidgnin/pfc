@@ -1,5 +1,6 @@
 var NewTagView = Backbone.View.extend({
   el: "#new-tag",
+  tag: null,
   start: function () {
     var that = this;
     this.$(".pfc-close-button").on(PfcApp.event, function () {
@@ -14,9 +15,15 @@ var NewTagView = Backbone.View.extend({
     PfcApp.blockEvents = false;
     that.$(".tag-name").val("").removeClass("empty");
     that.$(".tag-description").val("").removeClass("empty");
+    that.tag = null;
   },
-  show: function show() {
+  show: function show(tag) {
     PfcApp.blockEvents = true;
+    if (tag) {
+      this.tag = tag;
+      this.$(".tag-name").val(tag.get("name"));
+      this.$(".tag-description").val(tag.get("description"));
+    }
     this.$el.fadeIn("fast");
   },
   hide: function hide() {
@@ -34,7 +41,7 @@ var NewTagView = Backbone.View.extend({
     }
     if (validated) {
       that.$el.fadeOut("fast");
-      PfcApp.showAddTag();
+      PfcApp.showAddTag(this.tag);
     }
   },
   backTo: function backTo() {

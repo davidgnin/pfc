@@ -26,7 +26,6 @@ var TagLayerZoom = Backbone.View.extend({
       return mPoint <= cPoint &&
         mPoint + 4 >= cPoint;
     });
-    console.dir(markers);
     this.fastList = [];
     var that = this;
     _.each(markers, function (marker) {

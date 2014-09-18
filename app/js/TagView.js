@@ -12,6 +12,10 @@ var TagView = Backbone.View.extend({
         PfcApp.deleteTag(that.tag);
       }
     });
+    this.$(".edit-button").on(PfcApp.event, function () {
+      that.hide(that);
+      PfcApp.showNewTag(that.tag);
+    });
   },
   hide: function hide(that) {
     that.$el.fadeOut("fast");

@@ -16,18 +16,30 @@ var AddTagView = Backbone.View.extend({
     });
     this.$(".back-button").on(PfcApp.event, function () {
       that.$el.fadeOut("fast");
+      $(".tag-layer").css("opacity", "1");
+      that.marker = null;
       PfcApp.backNewTag();
     });
     this.$(".confirm-button").on(PfcApp.event, function () {
       that.saveTag(that);
     });
   },
-  show: function () {
-    this.$(".moving-marker").css({
-      top: this.$el.height()/2 + "px",
-      left: this.$el.width()/2 + "px"
-    });
+  show: function (marker) {
+    if (marker) {
+      this.marker = marker;
+      var norm = PfcApp.norm(marker.get("x"), marker.get("y"));
+      this.$(".moving-marker").css({
+        top: norm.y + "px",
+        left: norm.x + "px"
+      });
+    } else {
+      this.$(".moving-marker").css({
+        top: this.$el.height()/2 + "px",
+        left: this.$el.width()/2 + "px"
+      });
+    }
     this.$el.fadeIn("fast");
+    $(".tag-layer").css("opacity", "0.5");
   },
   jumpTo: function jumpTo(e, that) {
     e.preventDefault();
@@ -98,7 +110,9 @@ var AddTagView = Backbone.View.extend({
       10);
     var left = parseInt(that.$(".moving-marker").css("left").replace("px", ""),
       10);
-    PfcApp.saveTag([{ top: top, left: left }]);
+    PfcApp.saveTag({ top: top, left: left }, that.marker);
     that.$el.fadeOut("fast");
+    $(".tag-layer").css("opacity", "1");
+    that.marker = null;
   }
 });

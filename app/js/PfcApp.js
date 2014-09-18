@@ -236,11 +236,17 @@ var PfcApp = new (Backbone.Router.extend({
   showMenu: function loadMenu() {
     this.menu.show();
   },
-  showNewTag: function loadNewTag() {
-    this.newTag.show();
+  showNewTag: function loadNewTag(tag) {
+    this.newTag.show(tag);
   },
-  showAddTag: function loadAddTag() {
-    this.addTag.show();
+  showAddTag: function loadAddTag(tag) {
+    var marker;
+    if (tag) {
+      marker = this.markers.findWhere({
+        tagId: tag.id
+      });
+    }
+    this.addTag.show(marker);
   },
   backNewTag: function backNewTag() {
     this.newTag.backTo();
@@ -277,27 +283,38 @@ var PfcApp = new (Backbone.Router.extend({
       return { x: x*mult + plus.x, y: y*mult + plus.y };
     }
   },
-  saveTag: function saveTag(preMarkersData) {
+  saveTag: function saveTag(pmd, marker) {
+    console.log("before");
+    console.log(this.tags);
+    console.log(this.markers);
     var tagData = this.newTag.getData();
     tagData.section = this.section;
     tagData.line = this.line;
-    var tag = new TagModel(tagData);
-    this.tags.push(tag);
-    var markersData = [];
-    var that = this;
-    _.each(preMarkersData, function (pmd) {
-      var md = that.norm(pmd.left, pmd.top, true);
+    var tag;
+    var md = this.norm(pmd.left, pmd.top, true);
+    if (marker) {
+      tag = this.tags.get(marker.get("tagId"));
+      tag.set(tagData);
+      this.tags.add(tag);
+      marker.set(md);
+      this.markers.add(marker);
+    } else {
+      tag = new TagModel(tagData);
+      tag.set("id", tag.cid);
+      this.tags.push(tag);
       md.tagId = tag.cid;
-      md.point = that.point;
-      markersData.push(md);
-    });
-    this.markers.add(markersData);
+      md.point = this.point;
+      this.markers.add(md);
+    }
     this.newTag.hide();
     if (this.section == "zoom") {
       this.tagLayer.showMarkers();
     } else {
       this.tagLayer.showMarkers(this.point);
     }
+    console.log("after");
+    console.log(this.tags);
+    console.log(this.markers);
   },
   fixMarkers: function fixMarkers(that) {
     that.tagLayer.fastReShow();
@@ -306,23 +323,17 @@ var PfcApp = new (Backbone.Router.extend({
     this.tagLayer.switchTags(ampli);
   },
   showTag: function showTag(tagId) {
-    var tag = this.tags.find({
+    var tag = this.tags.findWhere({
       id: tagId
     });
     this.tag.show(tag);
   },
   deleteTag: function deleteTag(tag) {
-    console.log("before");
-    console.log(this.tags.length);
-    console.log(this.markers.length);
     var markers = this.markers.where({
       tagId: tag.get("id")
     });
     this.markers.remove(markers);
     this.tags.remove(tag);
-    console.log("after");
-    console.log(this.tags.length);
-    console.log(this.markers.length);
     if (this.section == "zoom") {
       this.tagLayer.showMarkers();
     } else {
