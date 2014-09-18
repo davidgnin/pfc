@@ -19,6 +19,10 @@ var PfcApp = new (Backbone.Router.extend({
     this.bar = new BarView();
     this.bar.start();
     this.loadingLayer = new LoadingLayerView();
+    this.tagControl = new TagControlView();
+    this.tagControl.start();
+    this.tag = new TagView();
+    this.tag.start();
 
     this.tags = new TagsCollection();
     this.markers = new MarkersCollection();
@@ -300,5 +304,11 @@ var PfcApp = new (Backbone.Router.extend({
   },
   switchRotTags: function switchRotTags(ampli) {
     this.tagLayer.switchTags(ampli);
+  },
+  showTag: function showTag(tagId) {
+    var tag = this.tags.find({
+      id: tagId
+    });
+    this.tag.show(tag);
   }
 }))();

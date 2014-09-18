@@ -1,0 +1,68 @@
+#tag {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 40px;
+  left: 0;
+  background-color: #90C695;
+  background-color: rgba(144, 198, 149, 0.75);
+  display: none;
+  text-align: center;
+  overflow: auto;
+
+  .buttons {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 120px;
+    height: 40px;
+  }
+  .button {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    color: $darkGreen;
+    float: left;
+    cursor: pointer;
+    transition: color $transSpeed;
+  }
+  .button:hover {
+    color: $contrast;
+  }
+  .button:before {
+    font-family: "icon-font";
+    line-height: 40px;
+    font-size: 24px;
+    display: inline-block;
+    vertical-align: top;
+    font-style: normal;
+    font-weight: normal;
+    speak: none;
+    font-variant: normal;
+    text-transform: none;
+  }
+  .edit-button:before {
+    content: '\e804';
+  }
+  .delete-button:before {
+    content: '\e805';
+  }
+  .close-button:before {
+    content: '\e806';
+  }
+
+  .name, .description {
+    display: inline-block;
+    width: 80%;
+    padding: 1em;
+    box-sizing: border-box;
+    text-align: left;
+  }
+  .name {
+    font-weight: 700;
+    margin-top: 2em;
+  }
+  .description {
+    line-height: 1.5;
+  }
+}

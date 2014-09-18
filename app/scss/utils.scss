@@ -5,17 +5,21 @@ $darkGreen: #1E824C;
 
 .pfc-close-button {
   position: absolute;
-  top: 1em;
-  right: 1.5em;
+  top: 0;
+  right: 0;
+  text-align: center;
   color: $darkGreen;
   cursor: pointer;
   transition: color $transSpeed;
+  width: 40px;
+  height: 40px;
 }
 .pfc-close-button:hover {
   color: $contrast;
 }
 .pfc-close-button:before {
   font-size: 24px;
+  line-height: 40px;
   content: "\e806";
   font-family: "icon-font";
   display: inline-block;
