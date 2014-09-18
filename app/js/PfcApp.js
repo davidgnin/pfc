@@ -63,60 +63,44 @@ var PfcApp = new (Backbone.Router.extend({
 
     this.markers.add([{
       tagId: "t1",
-      point: 1,
+      point: "1",
       x: Math.floor(Math.random()*800),
-      y: Math.floor(Math.random()*600),
-      from: 0,
-      to: 5
+      y: Math.floor(Math.random()*600)
     },{
       tagId: "t2",
-      point: 3,
+      point: "3",
       x: Math.floor(Math.random()*800),
-      y: Math.floor(Math.random()*600),
-      from: 1,
-      to: 6
+      y: Math.floor(Math.random()*600)
     },{
       tagId: "t3",
-      point: 5,
+      point: "5",
       x: Math.floor(Math.random()*800),
-      y: Math.floor(Math.random()*600),
-      from: 2,
-      to: 7
+      y: Math.floor(Math.random()*600)
     },{
       tagId: "t4",
-      point: 7,
+      point: "7",
       x: Math.floor(Math.random()*800),
-      y: Math.floor(Math.random()*600),
-      from: 3,
-      to: 8
+      y: Math.floor(Math.random()*600)
     },{
       tagId: "t5",
-      point: 9,
+      point: "9",
       x: Math.floor(Math.random()*800),
-      y: Math.floor(Math.random()*600),
-      from: 5,
-      to: 10
+      y: Math.floor(Math.random()*600)
     },{
       tagId: "t6",
-      point: 11,
+      point: "11",
       x: Math.floor(Math.random()*800),
-      y: Math.floor(Math.random()*600),
-      from: 7,
-      to: 12
+      y: Math.floor(Math.random()*600)
     },{
       tagId: "t7",
-      point: 13,
+      point: "13",
       x: Math.floor(Math.random()*800),
-      y: Math.floor(Math.random()*600),
-      from: 9,
-      to: 14
+      y: Math.floor(Math.random()*600)
     },{
       tagId: "t8",
-      point: 15,
+      point: "15",
       x: Math.floor(Math.random()*800),
-      y: Math.floor(Math.random()*600),
-      from: 11,
-      to: 16
+      y: Math.floor(Math.random()*600)
     }]);
 
     Backbone.history.start();
@@ -305,8 +289,11 @@ var PfcApp = new (Backbone.Router.extend({
     });
     this.markers.add(markersData);
     this.newTag.hide();
-    console.dir(this.tags.toJSON());
-    console.dir(this.markers.toJSON());
+    if (this.section == "zoom") {
+      this.tagLayer.showMarkers();
+    } else {
+      this.tagLayer.showMarkers(this.point);
+    }
   },
   fixMarkers: function fixMarkers(that) {
     that.tagLayer.fastReShow();

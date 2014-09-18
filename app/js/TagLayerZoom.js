@@ -2,6 +2,7 @@ var TagLayerZoom = Backbone.View.extend({
   el: "#canvas .tag-layer",
   data: null,
   fastList: [],
+  lastScale: null,
   start: function (data) {
     this.$el.empty();
     this.data = data;
@@ -13,9 +14,18 @@ var TagLayerZoom = Backbone.View.extend({
     });
   },
   showMarkers: function (newScale) {
+    if (newScale) {
+      this.lastScale = newScale;
+    } else {
+      newScale = this.lastScale;
+    }
     var markers = PfcApp.markers.filter(function (marker) {
-      return marker.get("from") <= PfcApp.point && marker.get("to") >= PfcApp.point;
+      var mPoint = parseInt(marker.get("point"), 10);
+      var cPoint = parseInt(PfcApp.point, 10);
+      return mPoint <= cPoint &&
+        mPoint + 4 >= cPoint;
     });
+    console.dir(markers);
     this.fastList = [];
     var that = this;
     _.each(markers, function (marker) {

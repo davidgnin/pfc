@@ -3,8 +3,6 @@ var MarkerModel = Backbone.Model.extend({
     tagId: null,
     point: null,
     x: null,
-    y: null,
-    from: 0,
-    to: 40
+    y: null
   }
 });

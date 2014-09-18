@@ -8,7 +8,7 @@ var TagLayerRot = Backbone.View.extend({
   showMarkers: function (newPoint) {
     this.$(".tag-layer").empty();
     var markers = PfcApp.markers.where({
-      point: parseInt(newPoint, 10)
+      point: newPoint
     });
     this.fastList = [];
     var that = this;
