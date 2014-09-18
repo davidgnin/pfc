@@ -166,7 +166,7 @@ var PfcApp = new (Backbone.Router.extend({
           }
           that.lineView = new ZoomView();
           var allData = that.lineView.start(line, lineData, point);
-          var barData = allData[point];
+          var barData = allData[that.point];
           $("#wrapper").removeClass("rot-mode").addClass("zoom-mode");
           that.bar.updateBar((that.point/(that.photos - 1))*100);
           that.bar.updateInfo(barData);
@@ -226,6 +226,9 @@ var PfcApp = new (Backbone.Router.extend({
             source: lineData.source,
             type: "camera"
           });
+          that.tagLayer = new TagLayerRot();
+          that.tagLayer.start();
+          that.tagLayer.showMarkers(that.point);
           that.loadingLayer.hide();
         }
       }, 50);
@@ -234,6 +237,7 @@ var PfcApp = new (Backbone.Router.extend({
         this.blockEvents = true;
         this.point = point;
         this.lineView.changePoint(point);
+        this.tagLayer.showMarkers(this.point);
         this.bar.updateBar((point/(this.photos - 1))*100);
       }
     }
@@ -306,5 +310,8 @@ var PfcApp = new (Backbone.Router.extend({
   },
   fixMarkers: function fixMarkers(that) {
     that.tagLayer.fastReShow();
+  },
+  switchRotTags: function switchRotTags(ampli) {
+    this.tagLayer.switchTags(ampli);
   }
 }))();

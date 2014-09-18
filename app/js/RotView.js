@@ -81,6 +81,7 @@ var RotView = Backbone.View.extend({
     e.preventDefault();
     var $target = $(e.target);
     if ($target.attr("id") == "canvas") {
+      PfcApp.switchRotTags(true);
       var myPreloader = ImgPreloader([{
         url: "img/rot/" + that.name + "/partials/" + that.point + ".jpg"
       }]);
@@ -134,6 +135,7 @@ var RotView = Backbone.View.extend({
       if (that.cancelClick) {
         that.cancelClick = false;
       } else {
+        PfcApp.switchRotTags();
         that.$(".aux-layer").addClass("mobile");
         that.$(".aux-layer").css({
           backgroundImage: 'url("img/rot/' + that.name + '/' + that.point +
