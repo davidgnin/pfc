@@ -18,6 +18,7 @@ var TagLayerZoom = Backbone.View.extend({
       this.lastScale = newScale;
     } else {
       newScale = this.lastScale;
+      this.$el.empty();
     }
     var markers = PfcApp.markers.filter(function (marker) {
       var mPoint = parseInt(marker.get("point"), 10);

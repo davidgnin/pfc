@@ -2,7 +2,7 @@ var TagControlView = Backbone.View.extend({
   el: "#canvas .tag-layer",
   start: function () {
     var that = this;
-    this.$el.on(PfcApp.event, function (e) {
+    this.$el.on(PfcApp.event + ".marker-clicked", ".pfc-marker", function (e) {
       that.showTag(e, that);
     });
   },

@@ -310,5 +310,23 @@ var PfcApp = new (Backbone.Router.extend({
       id: tagId
     });
     this.tag.show(tag);
+  },
+  deleteTag: function deleteTag(tag) {
+    console.log("before");
+    console.log(this.tags.length);
+    console.log(this.markers.length);
+    var markers = this.markers.where({
+      tagId: tag.get("id")
+    });
+    this.markers.remove(markers);
+    this.tags.remove(tag);
+    console.log("after");
+    console.log(this.tags.length);
+    console.log(this.markers.length);
+    if (this.section == "zoom") {
+      this.tagLayer.showMarkers();
+    } else {
+      this.tagLayer.showMarkers(this.point);
+    }
   }
 }))();
