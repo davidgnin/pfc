@@ -24,10 +24,16 @@ var AddTagView = Backbone.View.extend({
       that.saveTag(that);
     });
   },
-  show: function (marker) {
+  show: function (marker, ampli) {
     if (marker) {
       this.marker = marker;
       var norm = PfcApp.norm(marker.get("x"), marker.get("y"));
+      if (ampli) {
+        var top = parseFloat($("#canvas .aux-layer").css("top").replace("px", ""), 10);
+        var left = parseFloat($("#canvas .aux-layer").css("left").replace("px", ""), 10);
+        norm.x = norm.x*3 + left;
+        norm.y = norm.y*3 + top;
+      }
       this.$(".moving-marker").css({
         top: norm.y + "px",
         left: norm.x + "px"

@@ -246,7 +246,7 @@ var PfcApp = new (Backbone.Router.extend({
         tagId: tag.id
       });
     }
-    this.addTag.show(marker);
+    this.addTag.show(marker, (this.section == "rot" && this.tagLayer.ampli == 3));
   },
   backNewTag: function backNewTag() {
     this.newTag.backTo();
@@ -290,8 +290,14 @@ var PfcApp = new (Backbone.Router.extend({
     var tagData = this.newTag.getData();
     tagData.section = this.section;
     tagData.line = this.line;
-    var tag;
-    var md = this.norm(pmd.left, pmd.top, true);
+    var tag, md;
+    if (this.section == "rot" && this.tagLayer.ampli == 3) {
+      var top = -1*parseFloat($("#canvas .aux-layer").css("top").replace("px", ""), 10);
+      var left = -1*parseFloat($("#canvas .aux-layer").css("left").replace("px", ""), 10);
+      pmd.top = (pmd.top + top)/3;
+      pmd.left = (pmd.left + left)/3;
+    }
+    md = this.norm(pmd.left, pmd.top, true);
     if (marker) {
       tag = this.tags.get(marker.get("tagId"));
       tag.set(tagData);
