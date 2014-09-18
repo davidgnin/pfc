@@ -345,5 +345,9 @@ var PfcApp = new (Backbone.Router.extend({
     } else {
       this.tagLayer.showMarkers(this.point);
     }
+  },
+  getTagName: function getTagName(tagId) {
+    var tag = this.tags.get(tagId);
+    return tag.get("name");
   }
 }))();

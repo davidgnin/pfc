@@ -38,3 +38,65 @@ $darkGreen: #1E824C;
   margin: -35px 0 0 -10px;
   cursor: pointer;
 }
+.pfc-globe {
+  position: absolute;
+  max-width: 120px;
+  height: 30px;
+  box-sizing: border-box;
+  padding: 0.5em;
+  background-color: #fff;
+  font-size: 0.8em;
+  box-shadow: #000 0 0 5px;
+
+  .content {
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+.pfc-globe:before {
+  content: "";
+  position: absolute;
+  height: 0;
+  width: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent; 
+}
+.pfc-globe.right {
+  bottom: 50px;
+  left: 0;
+}
+.pfc-globe.right:before {
+  bottom: -6px;
+  left: 4px;
+  border-top: 6px solid #fff;
+}
+.pfc-globe.left {
+  bottom: 50px;
+  right: 20px;
+}
+.pfc-globe.left:before {
+  bottom: -6px;
+  right: 4px;
+  border-top: 6px solid #fff;
+}
+.pfc-globe.bottom {
+  top: 50px;
+  left: 0;
+}
+.pfc-globe.bottom:before {
+  top: -6px;
+  left: 4px;
+  border-bottom: 6px solid #fff;
+}
+.pfc-globe.bottom-left {
+  top: 50px;
+  right: 20px;
+}
+.pfc-globe.bottom-left:before {
+  top: -6px;
+  right: 4px;
+  border-bottom: 6px solid #fff;
+}
