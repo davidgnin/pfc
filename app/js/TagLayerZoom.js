@@ -20,11 +20,12 @@ var TagLayerZoom = Backbone.View.extend({
       newScale = this.lastScale;
       this.$el.empty();
     }
+    var tagIds = PfcApp.getActiveTags();
     var markers = PfcApp.markers.filter(function (marker) {
       var mPoint = parseInt(marker.get("point"), 10);
       var cPoint = parseInt(PfcApp.point, 10);
       return mPoint <= cPoint &&
-        mPoint + 4 >= cPoint;
+        mPoint + 4 >= cPoint && tagIds.indexOf(marker.get("tagId")) >= 0;
     });
     this.fastList = [];
     var that = this;

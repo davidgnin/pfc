@@ -31,81 +31,8 @@ var PfcApp = new (Backbone.Router.extend({
       that.fixMarkers(that);
     });
 
-    this.tags.add([{
-      id: "t1",
-      name: "Lorem Ipsum Dolor",
-      description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-    },{
-      id: "t2",
-      name: "Why do we use it?",
-      description: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)."
-    },{
-      id: "t3",
-      name: "Dolor sit amet",
-      description: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc."
-    },{
-      id: "t4",
-      name: "Where dos it com",
-      description: "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham."
-    },{
-      id: "t5",
-      name: "Unchanged",
-      description: "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32."
-    },{
-      id: "t6",
-      name: "Diplodocus test",
-      description: "Cras consequat molestie risus, sed porttitor ex maximus non. Nulla facilisi. Aenean ac ante eget quam fringilla dapibus. Sed non posuere justo. Aliquam nec congue enim. Morbi urna orci, varius ut nunc vitae, volutpat fermentum ligula. Praesent aliquet ante non lectus pulvinar mattis."
-    },{
-      id: "t7",
-      name: "Cras sit amet velit odio",
-      description: "Maecenas maximus elit quis lorem tincidunt, ut porttitor dolor hendrerit. Nunc tristique urna eget tellus ornare vestibulum. Vestibulum vehicula quam et vehicula dictum. Duis mollis dui non sem porta, mattis scelerisque eros finibus. Nam varius, nisl nec ullamcorper ultrices, ex risus vestibulum dui, id pulvinar purus elit in leo. Morbi urna arcu, pretium quis laoreet ut, imperdiet ut lorem. Etiam efficitur bibendum lorem at tempor. Praesent neque metus, finibus sed libero sed, blandit commodo mi. Aliquam erat volutpat. Praesent eget nisi eros. Phasellus a orci vitae urna fermentum maximus sed id ligula. Suspendisse eu maximus arcu, non sollicitudin justo. Ut scelerisque urna tortor, vel consequat dolor interdum in. Aliquam tristique, ligula et pretium posuere, tellus nisl ornare nunc, nec feugiat eros enim ut tortor."
-    },{
-      id: "t8",
-      name: "Suspendisse nec ex ex",
-      description: "Nunc nec aliquam libero. Aenean id tortor eros. Aliquam volutpat turpis ligula, eget gravida erat eleifend vitae. Phasellus quis pulvinar enim. Morbi lacinia enim varius, molestie nunc in, volutpat risus. Pellentesque ut pulvinar dolor. Morbi mollis nec ex nec efficitur. Curabitur vel velit risus. Mauris quis elit augue. Cras varius et felis quis sollicitudin. Nunc congue mattis urna non feugiat. Sed vitae nisl auctor, laoreet nisi porttitor, faucibus odio."
-    }]);
-
-    this.markers.add([{
-      tagId: "t1",
-      point: "1",
-      x: Math.floor(Math.random()*800),
-      y: Math.floor(Math.random()*600)
-    },{
-      tagId: "t2",
-      point: "3",
-      x: Math.floor(Math.random()*800),
-      y: Math.floor(Math.random()*600)
-    },{
-      tagId: "t3",
-      point: "5",
-      x: Math.floor(Math.random()*800),
-      y: Math.floor(Math.random()*600)
-    },{
-      tagId: "t4",
-      point: "7",
-      x: Math.floor(Math.random()*800),
-      y: Math.floor(Math.random()*600)
-    },{
-      tagId: "t5",
-      point: "9",
-      x: Math.floor(Math.random()*800),
-      y: Math.floor(Math.random()*600)
-    },{
-      tagId: "t6",
-      point: "11",
-      x: Math.floor(Math.random()*800),
-      y: Math.floor(Math.random()*600)
-    },{
-      tagId: "t7",
-      point: "13",
-      x: Math.floor(Math.random()*800),
-      y: Math.floor(Math.random()*600)
-    },{
-      tagId: "t8",
-      point: "15",
-      x: Math.floor(Math.random()*800),
-      y: Math.floor(Math.random()*600)
-    }]);
+    this.tags.add(TAGS);
+    this.markers.add(MARKERS);
 
     Backbone.history.start();
   },
@@ -154,7 +81,6 @@ var PfcApp = new (Backbone.Router.extend({
           }
           that.lineView = new ZoomView();
           var allData = that.lineView.start(line, lineData, point);
-          console.log(allData);
           var barData = allData[that.point];
           $("#wrapper").removeClass("rot-mode").addClass("zoom-mode");
           that.bar.updateBar((that.point/(that.photos - 1))*100);
@@ -285,9 +211,6 @@ var PfcApp = new (Backbone.Router.extend({
     }
   },
   saveTag: function saveTag(pmd, marker) {
-    console.log("before");
-    console.log(this.tags);
-    console.log(this.markers);
     var tagData = this.newTag.getData();
     tagData.section = this.section;
     tagData.line = this.line;
@@ -319,9 +242,6 @@ var PfcApp = new (Backbone.Router.extend({
     } else {
       this.tagLayer.showMarkers(this.point);
     }
-    console.log("after");
-    console.log(this.tags);
-    console.log(this.markers);
   },
   fixMarkers: function fixMarkers(that) {
     that.tagLayer.fastReShow();
@@ -350,5 +270,16 @@ var PfcApp = new (Backbone.Router.extend({
   getTagName: function getTagName(tagId) {
     var tag = this.tags.get(tagId);
     return tag.get("name");
+  },
+  getActiveTags: function getActiveTags() {
+    var tags = this.tags.where({
+      section: this.section,
+      line: this.line
+    });
+    var tagIds = [];
+    for (var i = 0, length = tags.length; i < length; i++) {
+      tagIds.push(tags[i].id);
+    }
+    return tagIds;
   }
 }))();

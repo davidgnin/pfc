@@ -15,8 +15,6 @@ module.exports = function(grunt) {
             "<%= config.app %>/lib/**/jquery.mousewheel.js",
             "<%= config.app %>/lib/**/underscore.js",
             "<%= config.app %>/lib/**/backbone.js",
-            "<%= config.app %>/lib/**/backbone.localStorage.js",
-            "<%= config.app %>/lib/**/tinymce.min.js",
             "<%= config.app %>/lib/ImgPreloader.js",
             "<%= config.app %>/model/**/*.js","<%= config.app %>/js/**/*.js"]
         }
