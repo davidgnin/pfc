@@ -26,6 +26,7 @@ var ZoomView = Backbone.View.extend({
       top: "0%",
       left: "0%"
     });
+    this.parsedData = [];
     _.each(["glass", "micro", "electro"], function (type) {
       if (data[type]) {
         _.each(data[type].scales, function (scale) {

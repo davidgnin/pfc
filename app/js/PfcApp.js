@@ -154,6 +154,7 @@ var PfcApp = new (Backbone.Router.extend({
           }
           that.lineView = new ZoomView();
           var allData = that.lineView.start(line, lineData, point);
+          console.log(allData);
           var barData = allData[that.point];
           $("#wrapper").removeClass("rot-mode").addClass("zoom-mode");
           that.bar.updateBar((that.point/(that.photos - 1))*100);
